@@ -30,41 +30,28 @@ const sideNavItems = [
   return obj;
 });
 
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
-    const key = String(index + 1);
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-    };
-  },
-);
-
 function Sidebar() {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
     <div className="sidebar">
-      <Layout>
-        <Layout.Sider
-          width={200}
+      <Layout.Sider
+        width={200}
+        style={{
+          background: colorBgContainer,
+        }}
+      >
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={["1"]}
           style={{
-            background: colorBgContainer,
+            height: "100%",
+            borderRight: 0,
           }}
-        >
-          <Menu
-            mode="inline"
-            defaultSelectedKeys={["1"]}
-            style={{
-              height: "100%",
-              borderRight: 0,
-            }}
-            items={sideNavItems}
-          />
-        </Layout.Sider>
-      </Layout>
+          items={sideNavItems}
+        />
+      </Layout.Sider>
     </div>
   );
 }

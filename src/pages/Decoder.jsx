@@ -44,7 +44,7 @@ function Formatter() {
                     />
                 </Layout.Sider>
             </aside>
-            <main className='p-3 h-100 w-100'>
+            <main className='p-3 h-100 w-100 bg-white'>
                 <TabsComponent pageName={'Decoder'} />
             </main>
         </div>

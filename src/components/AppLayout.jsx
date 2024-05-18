@@ -15,23 +15,17 @@ function AppLayout() {
           <AppSidebar />
         </aside>
         <main className="h-100 flex-1">
-          <Layout
-            style={{
-              padding: "24px",
-            }}
-          >
             <Layout.Content
               style={{
                 padding: 24,
                 margin: 0,
                 minHeight: 280,
-                background: colorBgContainer,
                 borderRadius: borderRadiusLG,
+                background: "#f5f5f5"
               }}
             >
               <Outlet />
             </Layout.Content>
-          </Layout>
         </main>
       </div>
     </div>
