@@ -1,9 +1,8 @@
-import React from 'react';
-import { createBrowserRouter, RouterProvider, Route, Link, BrowserRouter } from "react-router-dom";
-import AppLayout from './components/AppLayout';
-import Formatter from './pages/Formatter';
-import Decoder from './pages/Decoder';
-import './styles.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AppLayout from "./components/AppLayout";
+import Formatter from "./pages/Formatter";
+import Decoder from "./pages/Decoder";
+import "./styles.css";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +14,7 @@ const router = createBrowserRouter([
         element: <Formatter />,
       },
       {
-        path: 'decoder',
+        path: "decoder",
         element: <Decoder />,
       },
     ],
@@ -26,4 +25,4 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
