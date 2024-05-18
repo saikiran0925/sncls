@@ -1,8 +1,29 @@
-function App() {
+import React from 'react';
+import { createBrowserRouter, RouterProvider, Route, Link, BrowserRouter } from "react-router-dom";
+import AppLayout from './components/AppLayout';
+import Formatter from './pages/Formatter';
+import Decoder from './pages/Decoder';
+import './styles.css';
 
-  return (
-    <h1>Hello World!</h1>
-  )
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        index: true,
+        element: <Formatter />,
+      },
+      {
+        path: 'decoder',
+        element: <Decoder />,
+      },
+    ],
+  },
+]);
+
+function App() {
+  return <RouterProvider router={router} />;
 }
 
 export default App
