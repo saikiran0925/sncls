@@ -2,11 +2,17 @@ import { Tabs } from "antd";
 import { useState, useRef } from "react";
 import AppEditorComponent from "./AppEditorComponent";
 
-function TabsComponent({ pageName = "", initialItems = [], setActiveKey, activeKey }) {
+function TabsComponent({
+  checked,
+  pageName = "",
+  initialItems = [],
+  setActiveKey,
+  activeKey,
+}) {
   const [items, setItems] = useState(
     initialItems.map((obj) => {
       const editorRef = useRef();
-      obj.children = <AppEditorComponent editorRef={editorRef}/>;
+      obj.children = <AppEditorComponent editorRef={editorRef} checked={checked} />;
       obj.pageName = pageName;
       obj.editorRef = editorRef;
       return obj;
@@ -23,7 +29,7 @@ function TabsComponent({ pageName = "", initialItems = [], setActiveKey, activeK
     const newActiveKey = newPanes.length + 1 + 1;
     newPanes.push({
       label: `Tab ${newPanes.length + 1}`,
-      children: <AppEditorComponent editorRef={editorRef}/>,
+      children: <AppEditorComponent editorRef={editorRef} checked={checked} />,
       editorRef: editorRef,
       key: newActiveKey,
     });
@@ -61,6 +67,7 @@ function TabsComponent({ pageName = "", initialItems = [], setActiveKey, activeK
 
   return (
     <Tabs
+      checked={checked}
       type="editable-card"
       onChange={onChange}
       activeKey={activeKey}
