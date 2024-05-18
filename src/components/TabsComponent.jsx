@@ -2,31 +2,13 @@ import { Tabs } from "antd";
 import { useState, useRef } from "react";
 import AppEditorComponent from "./AppEditorComponent";
 
-const initialItems = [
-  {
-    label: "Tab 1",
-    children: "Content of Tab 1",
-    key: "1",
-  },
-  {
-    label: "Tab 2",
-    children: "Content of Tab 2",
-    key: "2",
-  },
-  {
-    label: "Tab 3",
-    children: "Content of Tab 3",
-    key: "3",
-    closable: false,
-  },
-];
-
-function TabsComponent({ pageName = "" }) {
-  const [activeKey, setActiveKey] = useState(initialItems[0].key);
+function TabsComponent({ pageName = "", initialItems = [], setActiveKey, activeKey }) {
   const [items, setItems] = useState(
     initialItems.map((obj) => {
-      obj.children = <AppEditorComponent />;
+      const editorRef = useRef();
+      obj.children = <AppEditorComponent editorRef={editorRef}/>;
       obj.pageName = pageName;
+      obj.editorRef = editorRef;
       return obj;
     })
   );
@@ -36,11 +18,13 @@ function TabsComponent({ pageName = "" }) {
   };
 
   const add = () => {
-    const newActiveKey = `newTab${newTabIndex.current++}`;
+    const editorRef = useRef();
     const newPanes = [...items];
+    const newActiveKey = newPanes.length + 1 + 1;
     newPanes.push({
       label: `Tab ${newPanes.length + 1}`,
-      children: <AppEditorComponent />,
+      children: <AppEditorComponent editorRef={editorRef}/>,
+      editorRef: editorRef,
       key: newActiveKey,
     });
     setItems(newPanes);

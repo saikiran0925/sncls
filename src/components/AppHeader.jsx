@@ -1,14 +1,8 @@
-import { Layout, Menu } from "antd";
-
-const items1 = ["1", "2", "3"].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
+import { Layout } from "antd";
 
 function AppHeader() {
   return (
     <header>
-      <Layout>
         <Layout.Header
           style={{
             display: "flex",
@@ -16,18 +10,7 @@ function AppHeader() {
           }}
         >
           <div className="demo-logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={["1"]}
-            items={items1}
-            style={{
-              flex: 1,
-              minWidth: 0,
-            }}
-          />
         </Layout.Header>
-      </Layout>
     </header>
   );
 }
