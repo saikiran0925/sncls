@@ -13,12 +13,19 @@
 2. Local Storage
 
 #### Tasks (17th - 20th)
-1. Layout(Skelton)
-2. JSON Formatter without local storage and less configurations
+[-] Layout(Skelton)
+[-] JSON Formatter without local storage and less configurations
 
 #### Libraries/Tools
 1. Ant Design for UI
 2. Ace Editor for Editor components
+
+
+### Features of JSON Formatter/Editor
+[-] Prettify
+[-] Stringfy
+[-] Vim Mode
+[-] Copy to clipboard
 
 ## ToDo
 1. Store date in MySQL

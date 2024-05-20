@@ -191,7 +191,7 @@ function Formatter(props) {
           }}
         >
           {pageOptions.current.map((button, i) => (
-            <Tooltip title={button.tooltip} key={button.key}>
+            <Tooltip title={button.tooltip} key={button.key} placement="right">
               <Button
                 shape="circle"
                 icon={button.icon}
