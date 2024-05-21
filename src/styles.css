@@ -59,6 +59,18 @@ body {
     justify-content: center;
     align-items: center;
 }
-.bg-white{
+
+.bg-white {
     background-color: white;
+}
+
+.ant-layout-sider-children {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar .ant-layout-sider-children svg{
+    width: 1.5em;
+    height: auto;
 }

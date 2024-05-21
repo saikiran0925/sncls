@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Layout, Menu, theme } from "antd";
+import { Layout, Menu, theme, Tooltip, Button } from "antd";
 import { BsFiletypeJson } from "react-icons/bs";
 import { SiJsonwebtokens } from "react-icons/si";
+import { useNavigate } from 'react-router-dom';
 
 import {
   LaptopOutlined,
@@ -12,18 +13,23 @@ import {
 
 const sideNavItems = [
   {
-    label: <Link to="/">JSON Editor</Link>,
-    // label: 'JSON Editor',
+    // label: <Link to="/">JSON Editor</Link>,
+    tooltip: 'JSON Editor',
     icon: <BsFiletypeJson />,
+    redirectPath: '/'
+
   },
   {
-    label: <Link to="/decoder">JWT Decoder</Link>,
-    // label: 'JWT Decoder',
+    // label: <Link to="/decoder">JWT Decoder</Link>,
+    tooltip: 'JWT Decoder',
     icon: <SiJsonwebtokens />,
+    redirectPath: '/decoder'
   },
   {
-    label: <Link to="/base">Base64 Decoder</Link>,
+    // label: <Link to="/base">Base64 Decoder</Link>,
+    tooltip: 'Base64 Decoder',
     icon: React.createElement(UserOutlined),
+    redirectPath: '/base'
   },
 ].map((obj, i) => {
   obj.key = i + 1;
@@ -34,23 +40,33 @@ function Sidebar() {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const navigate = useNavigate();
+
   return (
     <div className="sidebar">
       <Layout.Sider
-        width={200}
+        width={80}
         style={{
           background: colorBgContainer,
         }}
       >
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          style={{
-            height: "100%",
-            borderRight: 0,
-          }}
-          items={sideNavItems}
-        />
+        {sideNavItems.map((obj, i) => (
+          <Tooltip title={obj.tooltip} key={obj.key} placement="right">
+            <Button
+              shape="circle"
+              icon={obj.icon}
+              style={{
+                margin: "10px 0",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: '36px',
+                width: '36px'
+              }}
+              onClick={() => navigate(obj.redirectPath)}
+            />
+          </Tooltip>
+        ))}
       </Layout.Sider>
     </div>
   );
