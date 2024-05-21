@@ -9,7 +9,7 @@ function AppLayout() {
   } = theme.useToken();
   return (
     <div className="h-100">
-      <AppHeader />
+      {/* <AppHeader /> */}
       <div className="pg-ct">
         <aside className="h-100">
           <AppSidebar />

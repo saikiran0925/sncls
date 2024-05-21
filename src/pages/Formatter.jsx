@@ -38,19 +38,14 @@ function Formatter(props) {
   };
 
   const [checked, setChecked] = React.useState(false);
-  const [vimModeEnabled, setVimModeEnabled] = React.useState("success");
+  const [vimModeEnabled, setVimModeEnabled] = React.useState(null);
   const [buttonType, setbuttonType] = React.useState("default");
-  const isMounted = useRef(false);
+  // const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isMounted.current) {
-      const currentState =
-        vimModeEnabled === "success" ? "disabled" : "enabled";
-      const vimMessage = "Vim mode " + currentState;
-      console.log(`Showing notification: ${vimMessage}`);
-      showNotification(vimMessage, 3);
-    } else {
-      isMounted.current = true;
+    if (vimModeEnabled !== null) {
+      showNotification(`Vim mode ${vimModeEnabled ? 'enabled' : 'disabled'}`, 3);
+      setbuttonType(`${vimModeEnabled ? 'primary' : 'default'}`)
     }
   }, [vimModeEnabled]);
 
@@ -92,11 +87,12 @@ function Formatter(props) {
   const onVim = () => {
     console.log("on vim triggered");
     setChecked((prevChecked) => !prevChecked);
-    setVimModeEnabled((prevMode) => {
-      const mode = prevMode === "success" ? "danger" : "success";
-      console.log(`Setting vimModeEnabled to ${mode}`);
-      return mode;
-    });
+    setVimModeEnabled((prevMode) => !prevMode);
+    // setVimModeEnabled((prevMode) => {
+    //   console.log(prevMode)
+    //   showNotification(`Vim mode ${prevMode ? 'disabled' : 'enabled'}`, 3);
+    //   return !prevMode;
+    // });
   };
 
   const onStringify = () => {
@@ -105,7 +101,7 @@ function Formatter(props) {
     setActiveKey((prev) => {
       activeK = prev;
       console.log("on prettify", initialItems, activeK);
-      const editor = initialItems[activeK - 1].editorRef.current.editor;
+      const editor = initialItems[activeK].editorRef.current.editor;
       const jsonData = editor.getValue();
       try {
         if (jsonData !== "") {
@@ -193,6 +189,7 @@ function Formatter(props) {
           {pageOptions.current.map((button, i) => (
             <Tooltip title={button.tooltip} key={button.key} placement="right">
               <Button
+                type={button.type ? buttonType : 'default'}
                 shape="circle"
                 icon={button.icon}
                 style={{
