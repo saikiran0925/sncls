@@ -11,16 +11,6 @@ const initialItems = [
     children: "Content of Tab 1",
     key: "1",
   },
-  {
-    label: "Tab 2",
-    children: "Content of Tab 2",
-    key: "2",
-  },
-  {
-    label: "Tab 3",
-    children: "Content of Tab 3",
-    key: "3",
-  },
 ];
 
 function Formatter(props) {
@@ -95,13 +85,13 @@ function Formatter(props) {
     // });
   };
 
-  const onStringify = () => {
+  const onStringify = (i) => {
     console.log("on stringify");
     let activeK;
     setActiveKey((prev) => {
       activeK = prev;
       console.log("on prettify", initialItems, activeK);
-      const editor = initialItems[activeK].editorRef.current.editor;
+      const editor = initialItems[activeK - 1].editorRef.current.editor;
       const jsonData = editor.getValue();
       try {
         if (jsonData !== "") {
