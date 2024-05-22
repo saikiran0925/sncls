@@ -4,24 +4,7 @@ import { IoClipboardOutline } from "react-icons/io5";
 import { MdFormatAlignJustify, MdFormatAlignLeft } from "react-icons/md";
 import { SiVim } from "react-icons/si";
 import TabsComponent from "../components/TabsComponent";
-
-const initialItems = [
-  {
-    label: "Tab 1",
-    children: "Content of Tab 1",
-    key: "1",
-  },
-  {
-    label: "Tab 2",
-    children: "Content of Tab 2",
-    key: "2",
-  },
-  {
-    label: "Tab 3",
-    children: "Content of Tab 3",
-    key: "3",
-  },
-];
+import { v4 as uuidv4 } from 'uuid';
 
 function Formatter(props) {
   const {
@@ -41,6 +24,17 @@ function Formatter(props) {
   const [vimModeEnabled, setVimModeEnabled] = React.useState(null);
   const [buttonType, setbuttonType] = React.useState("default");
   // const isMounted = useRef(false);
+  const [initialItems, setInitialItems] = useState([
+    {
+      label: "Tab 1",
+      children: "Content of Tab 1",
+      key:  uuidv4(),
+    }
+  ]);
+
+  useEffect(()=>{
+    console.log(initialItems, 'initialItems');
+  }, [initialItems]);
 
   useEffect(() => {
     if (vimModeEnabled !== null) {
@@ -56,7 +50,7 @@ function Formatter(props) {
     setActiveKey((prev) => {
       activeK = prev;
       console.log("on prettify", initialItems, activeK);
-      const editor = initialItems[activeK - 1].editorRef.current.editor;
+      const editor = initialItems.find(obj => obj.key === activeK).editorRef.current.editor;
       try {
         const jsonData = editor.getValue();
         if (jsonData) {
@@ -101,7 +95,8 @@ function Formatter(props) {
     setActiveKey((prev) => {
       activeK = prev;
       console.log("on prettify", initialItems, activeK);
-      const editor = initialItems[activeK].editorRef.current.editor;
+      // const editor = initialItems[activeK - 1].editorRef.current.editor;
+      const editor = initialItems.find(obj => obj.key === activeK).editorRef.current.editor;
       const jsonData = editor.getValue();
       try {
         if (jsonData !== "") {
@@ -129,7 +124,9 @@ function Formatter(props) {
     setActiveKey((prev) => {
       activeK = prev;
       console.log("on prettify", initialItems, activeK);
-      const selectedEditor = initialItems[activeK - 1].editorRef.current.editor;
+      // const selectedEditor = initialItems[activeK - 1].editorRef.current.editor;
+      const selectedEditor = initialItems.find(obj => obj.key === activeK).editorRef.current.editor;
+
       const editorContent = selectedEditor.getValue();
       const textarea = document.createElement("textarea");
       textarea.value = editorContent;
@@ -142,8 +139,7 @@ function Formatter(props) {
     });
   };
 
-  const pageOptions = useRef(
-    [
+  const pageOptions = [
       {
         icon: <MdFormatAlignLeft />,
         tooltip: "Prettify",
@@ -168,8 +164,7 @@ function Formatter(props) {
     ].map((obj, i) => {
       obj.key = i + 1;
       return obj;
-    })
-  );
+    });
 
   return (
     <div className="content-container">
@@ -186,7 +181,7 @@ function Formatter(props) {
             padding: "10px 0",
           }}
         >
-          {pageOptions.current.map((button, i) => (
+          {pageOptions.map((button, i) => (
             <Tooltip title={button.tooltip} key={button.key} placement="right">
               <Button
                 type={button.type ? buttonType : 'default'}
@@ -212,6 +207,8 @@ function Formatter(props) {
           pageName={"Formatter"}
           setActiveKey={setActiveKey}
           activeKey={activeKey}
+          setInitialItems={setInitialItems}
+          showNotification={showNotification}
         />
       </main>
     </div>
