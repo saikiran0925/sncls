@@ -36,7 +36,7 @@ function TabsComponent({
       obj.pageName = pageName;
       return obj;
     }));
-  }, [])
+  }, [checked])
 
   const add = () => {
     setInitialItems((prevItems) => {
