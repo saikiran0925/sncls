@@ -31,6 +31,7 @@ We are actively working on adding the following tools to the SNCLS:
 2. **Base64 Encoder/Decoder**: Encode and decode Base64 strings.
 3. **URL Encoder/Decoder**: Encode and decode URLs.
 4. **Text Compare**: Compare two pieces of text to highlight differences.
+5. **Store Data**: We are storing your data in your local storage. Our tool is able to retrieve your previous data even if you restart.
 
 ## Installation
 
