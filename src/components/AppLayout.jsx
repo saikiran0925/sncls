@@ -17,7 +17,7 @@ function AppLayout() {
         <main className="h-100 flex-1">
             <Layout.Content
               style={{
-                padding: 24,
+                padding: 12,
                 margin: 0,
                 minHeight: 280,
                 borderRadius: borderRadiusLG,

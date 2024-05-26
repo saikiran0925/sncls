@@ -1,5 +1,5 @@
 import AceEditor from "react-ace";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "ace-builds/src-noconflict/mode-json5";
 import "ace-builds/src-noconflict/theme-github";
@@ -18,8 +18,45 @@ function AppEditorComponent(props) {
   const checked = props.checked;
   const [annotations, setAnnotations] = useState([]);
 
+  useEffect(()=>{
+    if (props && props.editorState && editorRef.current) {
+      const editor = editorRef.current.editor;
+
+      // Set the editor content
+      editor.setValue(props.editorState.content);
+
+      // Set the editor mode
+      editor.session.setMode(props.editorState.mode);
+
+      // Set the editor theme
+      editor.setTheme(props.editorState.theme);
+
+      // Set the editor keybinding
+      if (props.editorState.keybinding) {
+        editor.setKeyboardHandler(props.editorState.keybinding);
+      }
+
+    }
+  }, [])
+
   const onChange = (newValue) => {
-    console.log(newValue);
+    console.log(newValue, editorRef);
+
+    const editor = editorRef.current.editor;
+    const content = editor.getValue();
+    const mode = editor.session.getMode().$id;
+    const theme = editor.getTheme();
+    const keybinding = editor.getKeyboardHandler() && editor.getKeyboardHandler().$id;
+
+    const editorState = {
+      content,
+      mode,
+      theme,
+      keybinding
+    };
+    editorRef.current.editorState = editorState;
+    
+    props.onEditorStateChange(editorState)
     try {
       const validate = ajv.compile({});
       validate(JSON.parse(newValue));
@@ -51,8 +88,8 @@ function AppEditorComponent(props) {
     }
   };
 
-  const height = `${window.innerHeight - 140}px`;
-  const width = `${window.innerWidth - 240}px`;
+  const height = `${window.innerHeight - 82}px`;
+  const width = `${window.innerWidth - 190}px`;
 
   return (
     <AceEditor

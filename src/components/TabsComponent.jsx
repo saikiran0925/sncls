@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 function EditorWrapper({
   checked,
   uuid,
+  editorState,
   setInitialItems
 }) {
   const editorRef = useRef();
@@ -13,12 +14,23 @@ function EditorWrapper({
     prev.find((obj) => obj.key === uuid).editorRef = editorRef;
     return prev;
   })
-  return <AppEditorComponent editorRef={editorRef} checked={checked} />
+
+  const onEditorStateChange = (state) => {
+    setInitialItems((prev) => {
+      const current = prev.find((obj) => obj.key === uuid);
+      if(current){
+        current.editorState = state;
+      }
+      
+      return prev;
+    })
+  }
+
+  return <AppEditorComponent editorRef={editorRef} checked={checked} editorState={editorState} onEditorStateChange={onEditorStateChange}/>
 }
 
 function TabsComponent({
   checked,
-  pageName = "",
   initialItems = [],
   setActiveKey,
   activeKey,
@@ -32,8 +44,7 @@ function TabsComponent({
 
   useEffect(() => {
     setInitialItems(initialItems.map((obj, i) => {
-      obj.children = <EditorWrapper setInitialItems={setInitialItems} uuid={obj.key} checked={checked} />;
-      obj.pageName = pageName;
+      obj.children = <EditorWrapper setInitialItems={setInitialItems} editorState={obj.editorState} uuid={obj.key} checked={checked} />;
       return obj;
     }));
   }, [checked])

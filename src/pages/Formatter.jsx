@@ -7,6 +7,7 @@ import TabsComponent from "../components/TabsComponent";
 import { v4 as uuidv4 } from 'uuid';
 
 function Formatter(props) {
+  const pageName = "Formatter";
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -24,16 +25,35 @@ function Formatter(props) {
   const [vimModeEnabled, setVimModeEnabled] = React.useState(null);
   const [buttonType, setbuttonType] = React.useState("default");
   // const isMounted = useRef(false);
-  const [initialItems, setInitialItems] = useState([
-    {
-      label: "Tab 1",
-      children: "Content of Tab 1",
-      key:  uuidv4(),
-    }
-  ]);
+  const [initialItems, setInitialItems] = useState(
+    localStorage.getItem(pageName) ? JSON.parse(localStorage.getItem(pageName)) : [
+      {
+        label: "Tab 1",
+        children: "Content of Tab 1",
+        key: uuidv4(),
+      }
+    ]);
+  const initialItemsRef = useRef(initialItems);
 
-  useEffect(()=>{
-    console.log(initialItems, 'initialItems');
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      console.log(initialItemsRef.current, 'initialItems on destroy');
+      const requiredData = initialItemsRef.current.map((obj) => {
+        const { editorRef, children, ...rest } = obj;
+        return rest;
+      });
+      localStorage.setItem(pageName, JSON.stringify(requiredData));
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    initialItemsRef.current = initialItems;
   }, [initialItems]);
 
   useEffect(() => {
@@ -140,37 +160,37 @@ function Formatter(props) {
   };
 
   const pageOptions = [
-      {
-        icon: <MdFormatAlignLeft />,
-        tooltip: "Prettify",
-        clickHandler: (i) => onPrettify(i),
-      },
-      {
-        icon: <MdFormatAlignJustify />,
-        tooltip: "Stringify",
-        clickHandler: (i) => onStringify(i),
-      },
-      {
-        icon: <SiVim />,
-        tooltip: "Vim",
-        type: buttonType,
-        clickHandler: (i) => onVim(i),
-      },
-      {
-        icon: <IoClipboardOutline />,
-        tooltip: "Copy",
-        clickHandler: (i) => onCopy(i),
-      },
-    ].map((obj, i) => {
-      obj.key = i + 1;
-      return obj;
-    });
+    {
+      icon: <MdFormatAlignLeft />,
+      tooltip: "Prettify",
+      clickHandler: (i) => onPrettify(i),
+    },
+    {
+      icon: <MdFormatAlignJustify />,
+      tooltip: "Stringify",
+      clickHandler: (i) => onStringify(i),
+    },
+    {
+      icon: <SiVim />,
+      tooltip: "Vim",
+      type: buttonType,
+      clickHandler: (i) => onVim(i),
+    },
+    {
+      icon: <IoClipboardOutline />,
+      tooltip: "Copy",
+      clickHandler: (i) => onCopy(i),
+    },
+  ].map((obj, i) => {
+    obj.key = i + 1;
+    return obj;
+  });
 
   return (
     <div className="content-container">
       <aside>
         <Layout.Sider
-          width={80}
+          width={60}
           style={{
             background: colorBgContainer,
             borderRight: "2px solid #f4f1f1",
@@ -199,12 +219,11 @@ function Formatter(props) {
           ))}
         </Layout.Sider>
       </aside>
-      <main className="p-3 h-100 w-100">
+      <main className="px-3 h-100 w-100">
         {contextHolder}
         <TabsComponent
           checked={checked}
           initialItems={initialItems}
-          pageName={"Formatter"}
           setActiveKey={setActiveKey}
           activeKey={activeKey}
           setInitialItems={setInitialItems}

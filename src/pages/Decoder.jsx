@@ -26,7 +26,7 @@ function Formatter() {
         <div className='content-container'>
             <aside>
                 <Layout.Sider
-                    width={80}
+                    width={60}
                     style={{
                         background: colorBgContainer,
                         borderRight: '2px solid #f4f1f1',
@@ -45,7 +45,7 @@ function Formatter() {
                 </Layout.Sider>
             </aside>
             <main className='p-3 h-100 w-100 bg-white'>
-                <TabsComponent pageName={'Decoder'} />
+                {/* <TabsComponent pageName={'Decoder'} /> */}
             </main>
         </div>
     );
