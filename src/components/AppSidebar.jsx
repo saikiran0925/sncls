@@ -19,18 +19,18 @@ const sideNavItems = [
     icon: <BsFiletypeJson />,
     redirectPath: '/'
   },
-  {
-    // label: <Link to="/decoder">JWT Decoder</Link>,
-    tooltip: 'JWT Decoder',
-    icon: <SiJsonwebtokens />,
-    redirectPath: '/decoder'
-  },
-  {
-    // label: <Link to="/base">Base64 Decoder</Link>,
-    tooltip: 'Base64 Decoder',
-    icon: React.createElement(UserOutlined),
-    redirectPath: '/base'
-  },
+  // {
+  //   // label: <Link to="/decoder">JWT Decoder</Link>,
+  //   tooltip: 'JWT Decoder',
+  //   icon: <SiJsonwebtokens />,
+  //   redirectPath: '/decoder'
+  // },
+  // {
+  //   // label: <Link to="/base">Base64 Decoder</Link>,
+  //   tooltip: 'Base64 Decoder',
+  //   icon: React.createElement(UserOutlined),
+  //   redirectPath: '/base'
+  // },
 ].map((obj, i) => {
   obj.key = i + 1;
   return obj;
