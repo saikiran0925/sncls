@@ -22,6 +22,7 @@ The JSON Editor is a versatile tool that allows you to edit and format JSON data
 3. **Vim Mode**: Enables Vim mode in the editor for those who prefer using Vim keybindings.
 4. **Copy**: Copies the content of the editor to your clipboard with a single click.
 5. **Error Annotations**: The editor highlights errors in the JSON and suggests resolutions, helping you debug your JSON quickly.
+6. **Store Data**: We are storing your data in your local storage. Our tool is able to retrieve your previous data even if you restart.
 
 ## Upcoming Tools
 
@@ -31,7 +32,6 @@ We are actively working on adding the following tools to the SNCLS:
 2. **Base64 Encoder/Decoder**: Encode and decode Base64 strings.
 3. **URL Encoder/Decoder**: Encode and decode URLs.
 4. **Text Compare**: Compare two pieces of text to highlight differences.
-5. **Store Data**: We are storing your data in your local storage. Our tool is able to retrieve your previous data even if you restart.
 
 ## Installation
 
@@ -106,4 +106,7 @@ We welcome contributions from the community! If you have a feature request, bug 
 5. Open a Pull Request.
 
 Thank you for using the SNCLS! If you have any questions or feedback, please feel free to reach out.
-Our emails: saikiranbade2018@gmail.com
+Our emails:
+
+1. saikiranbade2018@gmail.com
+2. manchikantisaikiran777@gmail.com
