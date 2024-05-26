@@ -8,7 +8,6 @@ Welcome to the SNCLS (pronounced as essentials)! This tool is designed to consol
   - [JSON Editor](#json-editor)
 - [Upcoming Tools](#upcoming-tools)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Contributing](#contributing)
 
 ## Features
@@ -83,7 +82,7 @@ services:
   sncls:
     image: saikiran0925/sncls:latest
     ports:
-      - "3001:5173"
+      - "5173:5173"
 ```
 
 Pull and recreate container using below commands
