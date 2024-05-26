@@ -35,7 +35,7 @@ We are actively working on adding the following tools to the SNCLS:
 
 ## Installation
 
-### Cloning and running in local
+### Method 1: Cloning and running in local
 
 To get started with the SNCLS, clone the repository and install the necessary dependencies:
 
@@ -53,12 +53,13 @@ npm run dev
 
 Open your browser and navigate to `http://localhost:5173` to access the SNCLS.
 
-### Run using Docker
+### Method 2: Run using Docker
 
 We have depoyed this code in our own Docker Hub so to run SNCLS using Docker, you can use either of these ways.
 
-1. Docker command
-   Pull the Docker image:
+#### Option 1: Docker command
+
+Pull the Docker image:
 
 ```bash
 docker pull saikiran0925/sncls:latest
@@ -72,8 +73,9 @@ docker run -d -p 5173:5173 saikiran0925/sncls:latest
 
 Open your browser and navigate to `http://localhost:5173` to access the SNCLS.
 
-2. Docker Compose
-   Create docker-compose.yml file with the below contents
+#### Option 2: Docker Compose
+
+Create docker-compose.yml file with the below contents
 
 ```yml
 version: "3"
