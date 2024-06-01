@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Formatter from "./pages/Formatter";
 import Decoder from "./pages/Decoder";
+import DiffEditorWrapper from "./pages/DiffEditor";
 import "./styles.css";
 
 const router = createBrowserRouter([
@@ -14,8 +15,8 @@ const router = createBrowserRouter([
         element: <Formatter />,
       },
       {
-        path: "decoder",
-        element: <Decoder />,
+        path: "diffeditor",
+        element: <DiffEditorWrapper />,
       },
     ],
   },
