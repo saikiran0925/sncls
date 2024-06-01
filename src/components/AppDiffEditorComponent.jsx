@@ -17,13 +17,13 @@ function AppDiffEditorComponent(props) {
     console.log("Editor instance: ", editor);
     const modifiedEditor = editor.getModifiedEditor();
     const originalEditor = editor.getOriginalEditor();
-    originalEditor.setValue(props.editorState.originalEditorContent);
-    modifiedEditor.setValue(props.editorState.modifiedEditorContent);
-    console.log(
-      "Setting the values after mount and the values are: ",
-      props.editorState.modifiedEditorContent,
-      props.editorState.originalEditorContent
-    );
+
+    const originalContent = props.editorState?.originalEditorContent || "";
+    const modifiedContent = props.editorState?.modifiedEditorContent || "";
+
+    originalEditor.setValue(originalContent);
+    modifiedEditor.setValue(modifiedContent);
+
     modifiedEditor.onDidChangeModelContent((_) => {
       console.log(modifiedEditor.getValue());
       modifiedEditorContent = modifiedEditor.getValue();
