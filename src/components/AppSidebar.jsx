@@ -1,29 +1,28 @@
+import { Button, Layout, Tooltip, theme } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
-import { Layout, Menu, theme, Tooltip, Button } from "antd";
 import { BsFiletypeJson } from "react-icons/bs";
+import { MdCompare } from "react-icons/md";
 import { SiJsonwebtokens } from "react-icons/si";
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const sideNavItems = [
   {
     // label: <Link to="/">JSON Editor</Link>,
-    tooltip: 'JSON Editor',
+    tooltip: "JSON Editor",
     icon: <BsFiletypeJson />,
-    redirectPath: '/'
+    redirectPath: "/",
+  },
+  {
+    // label: <Link to="/decoder">JWT Decoder</Link>,
+    tooltip: "Diff Editor",
+    icon: <MdCompare />,
+    redirectPath: "/diffeditor",
   },
   // {
   //   // label: <Link to="/decoder">JWT Decoder</Link>,
-  //   tooltip: 'JWT Decoder',
+  //   tooltip: "JWT Decoder",
   //   icon: <SiJsonwebtokens />,
-  //   redirectPath: '/decoder'
+  //   redirectPath: "/decoder",
   // },
   // {
   //   // label: <Link to="/base">Base64 Decoder</Link>,
@@ -54,7 +53,9 @@ function Sidebar() {
         {sideNavItems.map((obj, i) => (
           <Tooltip title={obj.tooltip} key={obj.key} placement="right">
             <Button
-              type={obj.redirectPath == location.pathname ? 'primary' : 'default'}
+              type={
+                obj.redirectPath == location.pathname ? "primary" : "default"
+              }
               shape="circle"
               icon={obj.icon}
               style={{

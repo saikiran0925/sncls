@@ -1,7 +1,7 @@
 import TabsComponent from "../components/TabsComponent";
 import AppDiffEditorComponent from "../components/AppDiffEditorComponent";
 
-function Decoder() {
+function DiffEditorWrapper() {
   return (
     <div className="content-container">
       <main className="p-3 h-100 w-100 bg-white">
@@ -11,4 +11,4 @@ function Decoder() {
   );
 }
 
-export default Decoder;
+export default DiffEditorWrapper;
