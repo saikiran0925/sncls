@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Formatter from "./pages/Formatter";
 import Decoder from "./pages/Decoder";
+import DiffEditorWrapper from "./pages/DiffEditor";
+import BlankSpace from "./pages/BlankSpace";
 import "./styles.css";
 
 const router = createBrowserRouter([
@@ -14,8 +16,12 @@ const router = createBrowserRouter([
         element: <Formatter />,
       },
       {
-        path: "decoder",
-        element: <Decoder />,
+        path: "blankspace",
+        element: <BlankSpace />,
+      },
+      {
+        path: "diffeditor",
+        element: <DiffEditorWrapper />,
       },
     ],
   },
