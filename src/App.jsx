@@ -3,6 +3,7 @@ import AppLayout from "./components/AppLayout";
 import Formatter from "./pages/Formatter";
 import Decoder from "./pages/Decoder";
 import DiffEditorWrapper from "./pages/DiffEditor";
+import BlankSpace from "./pages/BlankSpace";
 import "./styles.css";
 
 const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Formatter />,
+      },
+      {
+        path: "blankspace",
+        element: <BlankSpace />,
       },
       {
         path: "diffeditor",

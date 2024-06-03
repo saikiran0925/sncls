@@ -3,6 +3,7 @@ import React from "react";
 import { BsFiletypeJson } from "react-icons/bs";
 import { MdCompare } from "react-icons/md";
 import { SiJsonwebtokens } from "react-icons/si";
+import { GrNotes } from "react-icons/gr";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const sideNavItems = [
@@ -11,6 +12,12 @@ const sideNavItems = [
     tooltip: "JSON Editor",
     icon: <BsFiletypeJson />,
     redirectPath: "/",
+  },
+  {
+    // label: <Link to="/decoder">JWT Decoder</Link>,
+    tooltip: "Blank Space",
+    icon: <GrNotes />,
+    redirectPath: "/blankspace",
   },
   {
     // label: <Link to="/decoder">JWT Decoder</Link>,
