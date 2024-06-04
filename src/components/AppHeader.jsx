@@ -7,6 +7,8 @@ function AppHeader() {
           style={{
             display: "flex",
             alignItems: "center",
+            height: 48,
+            background: "#121212"
           }}
         >
           <div className="demo-logo" />

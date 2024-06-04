@@ -2,6 +2,7 @@ import { Button, Layout, Tooltip, theme } from "antd";
 import React from "react";
 import { BsFiletypeJson } from "react-icons/bs";
 import { MdCompare } from "react-icons/md";
+import { AiOutlineAppstore } from "react-icons/ai";
 import { SiJsonwebtokens } from "react-icons/si";
 import { GrNotes } from "react-icons/gr";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -57,6 +58,18 @@ function Sidebar() {
           background: colorBgContainer,
         }}
       >
+        <Button
+          icon={<AiOutlineAppstore />}
+          style={{
+            margin: "10px 0",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: "none"
+          }}
+          type="default"
+        />
+        <hr style={{margin: "16px", width: "50%", borderColor: "#d9d9d9"}} />
         {sideNavItems.map((obj, i) => (
           <Tooltip title={obj.tooltip} key={obj.key} placement="right">
             <Button

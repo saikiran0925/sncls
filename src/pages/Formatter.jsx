@@ -48,6 +48,7 @@ function Formatter(props) {
     window.addEventListener('beforeunload', handleBeforeUnload);
 
     return () => {
+      handleBeforeUnload();
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
@@ -219,7 +220,7 @@ function Formatter(props) {
           ))}
         </Layout.Sider>
       </aside>
-      <main className="px-3 h-100 w-100">
+      <main className="h-100 w-100">
         {contextHolder}
         <TabsComponent
           checked={checked}
