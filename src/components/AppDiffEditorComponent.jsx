@@ -48,10 +48,14 @@ function AppDiffEditorComponent(props) {
     });
   }
 
+  const height = `${window.innerHeight - 120}px`;
+  const width = `${window.innerWidth - 90}px`;
+
   return (
     <ForwardedDiffEditor
       ref={editorRef}
-      height="90vh"
+      height={height}
+      width={width}
       onMount={handleEditorMount}
       options={{
         readOnly: false,

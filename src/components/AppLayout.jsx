@@ -8,24 +8,24 @@ function AppLayout() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
-    <div className="h-100">
-      {/* <AppHeader /> */}
+    <div className="h-100 d-flex" style={{ maxWidth: "100%"}}>
+      <aside className="h-100">
+        <AppSidebar />
+      </aside>
       <div className="pg-ct">
-        <aside className="h-100">
-          <AppSidebar />
-        </aside>
+        <AppHeader />
         <main className="h-100 flex-1">
-            <Layout.Content
-              style={{
-                padding: 12,
-                margin: 0,
-                minHeight: 280,
-                borderRadius: borderRadiusLG,
-                background: "#f5f5f5"
-              }}
-            >
-              <Outlet />
-            </Layout.Content>
+          <Layout.Content
+            style={{
+              padding: 6,
+              margin: 0,
+              minHeight: 280,
+              borderRadius: borderRadiusLG,
+              background: "#f5f5f5"
+            }}
+          >
+            <Outlet />
+          </Layout.Content>
         </main>
       </div>
     </div>
