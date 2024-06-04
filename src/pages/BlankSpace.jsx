@@ -30,6 +30,7 @@ function BlankSpace() {
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
+      handleBeforeUnload();
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
@@ -41,7 +42,7 @@ function BlankSpace() {
   const [activeKey, setActiveKey] = useState(initialItems[0].key);
   return (
     <div className="content-container">
-      <main className="p-3 h-100 w-100 bg-white">
+      <main className="h-100 w-100 bg-white">
         <BlankSpaceTabsComponent
           initialItems={initialItems}
           setActiveKey={setActiveKey}

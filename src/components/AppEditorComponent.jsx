@@ -88,8 +88,8 @@ function AppEditorComponent(props) {
     }
   };
 
-  const height = `${window.innerHeight - 82}px`;
-  const width = `${window.innerWidth - 190}px`;
+  const height = `${window.innerHeight - 120}px`;
+  const width = `${window.innerWidth - 150}px`;
 
   return (
     <AceEditor

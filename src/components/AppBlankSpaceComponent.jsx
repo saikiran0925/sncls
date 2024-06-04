@@ -9,6 +9,8 @@ function AppBlankSpaceComponent(props) {
   }
 
   console.log("Current editorRef is: ", editorRef.current);
+  const height = `${window.innerHeight - 120}px`;
+  const width = `${window.innerWidth - 90}px`;
 
   function handleEditorMount(editor, monaco) {
     console.log("Editor instance: ", editor);
@@ -32,6 +34,6 @@ function AppBlankSpaceComponent(props) {
     });
   }
 
-  return <Editor height="90vh" onMount={handleEditorMount} />;
+  return <Editor height={height} width={width} onMount={handleEditorMount} />;
 }
 export default AppBlankSpaceComponent;
