@@ -1,13 +1,14 @@
 import { Tabs } from "antd";
 import { useRef, useEffect } from "react";
-import AppMonacoJsonEditorComponent from "../editorComponents/AppMonacoJsonEditorComponent";
 import { v4 as uuidv4 } from 'uuid';
+import AppMonacoJsonEditorComponent from "../editorComponents/AppMonacoJsonEditorComponent";
+import AppEditorComponent from "../editorComponents/AppEditorComponent";
 import AppDiffEditorComponent from "../editorComponents/AppDiffEditorComponent";
 import AppBlankSpaceComponent from "../editorComponents/AppBlankSpaceComponent";
 
 const editorComponents = {
   DiffEditor: AppDiffEditorComponent,
-  Formatter: AppMonacoJsonEditorComponent,
+  Formatter: AppEditorComponent,
   BlankSpace: AppBlankSpaceComponent,
   // Add other types and their corresponding components here
 };
