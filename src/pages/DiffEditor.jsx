@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import AppDiffEditorComponent from "../components/AppDiffEditorComponent";
-import TabsComponent from "../components/TabsComponent";
-import DiffEditorTabsComponent from "../components/DiffEditorTabsComponent";
+import TabsComponent from "../components/generic/TabsComponent";
 import { v4 as uuidv4 } from "uuid";
 
 function DiffEditorWrapper() {
@@ -10,12 +8,12 @@ function DiffEditorWrapper() {
     localStorage.getItem(pageName)
       ? JSON.parse(localStorage.getItem(pageName))
       : [
-          {
-            label: "Tab 1",
-            children: "Content of Tab 1",
-            key: uuidv4(),
-          },
-        ]
+        {
+          label: "Tab 1",
+          children: "Content of Tab 1",
+          key: uuidv4(),
+        },
+      ]
   );
   const initialItemsRef = useRef(initialItems);
 
@@ -45,11 +43,12 @@ function DiffEditorWrapper() {
   return (
     <div className="content-container">
       <main className="h-100 w-100 bg-white">
-        <DiffEditorTabsComponent
+        <TabsComponent
           initialItems={initialItems}
           setActiveKey={setActiveKey}
           activeKey={activeKey}
           setInitialItems={setInitialItems}
+          editorType={pageName}
         />
       </main>
     </div>

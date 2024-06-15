@@ -1,5 +1,3 @@
-import { DiffEditor } from "@monaco-editor/react";
-import { useEffect, useRef, useState } from "react";
 import ForwardedDiffEditor from "./ForwardedDiffEditor";
 
 function AppDiffEditorComponent(props) {
