@@ -1,15 +1,30 @@
 import { Tabs } from "antd";
-import { useState, useRef, useEffect } from "react";
-import AppEditorComponent from "./AppEditorComponent";
-import AppDiffEditorComponent from "./AppDiffEditorComponent";
-import { v4 as uuidv4 } from "uuid";
+import { useRef, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import AppMonacoJsonEditorComponent from "../editorComponents/AppMonacoJsonEditorComponent";
+import AppEditorComponent from "../editorComponents/AppEditorComponent";
+import AppDiffEditorComponent from "../editorComponents/AppDiffEditorComponent";
+import AppBlankSpaceComponent from "../editorComponents/AppBlankSpaceComponent";
 
-function EditorWrapper({ checked, uuid, editorState, setInitialItems }) {
+const editorComponents = {
+  DiffEditor: AppDiffEditorComponent,
+  Formatter: AppEditorComponent,
+  BlankSpace: AppBlankSpaceComponent,
+  // Add other types and their corresponding components here
+};
+
+function EditorWrapper({
+  checked,
+  uuid,
+  editorState,
+  setInitialItems,
+  editorType
+}) {
   const editorRef = useRef();
   setInitialItems((prev) => {
     prev.find((obj) => obj.key === uuid).editorRef = editorRef;
     return prev;
-  });
+  })
 
   const onEditorStateChange = (state) => {
     setInitialItems((prev) => {
@@ -19,16 +34,11 @@ function EditorWrapper({ checked, uuid, editorState, setInitialItems }) {
       }
 
       return prev;
-    });
-  };
+    })
+  }
 
-  return (
-    <AppDiffEditorComponent
-      editorRef={editorRef}
-      editorState={editorState}
-      onEditorStateChange={onEditorStateChange}
-    />
-  );
+  const EditorComponent = editorComponents[editorType]
+  return <EditorComponent editorRef={editorRef} checked={checked} editorState={editorState} onEditorStateChange={onEditorStateChange} />
 }
 
 function TabsComponent({
@@ -38,27 +48,18 @@ function TabsComponent({
   activeKey,
   setInitialItems,
   showNotification,
+  editorType,
 }) {
-  const newTabIndex = useRef(0);
   const onChange = (newActiveKey) => {
     setActiveKey(newActiveKey);
   };
 
   useEffect(() => {
-    setInitialItems(
-      initialItems.map((obj, i) => {
-        obj.children = (
-          <EditorWrapper
-            setInitialItems={setInitialItems}
-            editorState={obj.editorState}
-            uuid={obj.key}
-            checked={checked}
-          />
-        );
-        return obj;
-      })
-    );
-  }, [checked]);
+    setInitialItems(initialItems.map((obj, i) => {
+      obj.children = <EditorWrapper setInitialItems={setInitialItems} editorState={obj.editorState} uuid={obj.key} checked={checked} editorType={editorType} />;
+      return obj;
+    }));
+  }, [checked])
 
   const add = () => {
     setInitialItems((prevItems) => {
@@ -66,13 +67,7 @@ function TabsComponent({
       const newActiveKey = uuidv4();
       newPanes.push({
         label: `Tab ${newPanes.length + 1}`,
-        children: (
-          <EditorWrapper
-            setInitialItems={setInitialItems}
-            uuid={newActiveKey}
-            checked={checked}
-          />
-        ),
+        children: <EditorWrapper setInitialItems={setInitialItems} uuid={newActiveKey} checked={checked} editorType={editorType} />,
         key: newActiveKey,
       });
       setActiveKey(newActiveKey);
@@ -80,7 +75,9 @@ function TabsComponent({
     });
   };
 
+
   const remove = (targetKey) => {
+
     if (initialItems.length === 1) {
       showNotification("Removing the last tab is not allowed", 3, "warning");
       return;
@@ -101,12 +98,7 @@ function TabsComponent({
         newActiveKey = newPanes[0].key;
       }
     }
-    setInitialItems(
-      newPanes.map((obj, i) => {
-        obj.label = `Tab ${i + 1}`;
-        return obj;
-      })
-    );
+    setInitialItems(newPanes.map((obj, i) => { obj.label = `Tab ${i + 1}`; return obj }));
     setActiveKey(newActiveKey);
   };
 

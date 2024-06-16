@@ -3,7 +3,7 @@ import { Button, Layout, Tooltip, theme, message } from "antd";
 import { IoClipboardOutline } from "react-icons/io5";
 import { MdFormatAlignJustify, MdFormatAlignLeft } from "react-icons/md";
 import { SiVim } from "react-icons/si";
-import TabsComponent from "../components/TabsComponent";
+import TabsComponent from "../components/generic/TabsComponent";
 import { v4 as uuidv4 } from 'uuid';
 
 function Formatter(props) {
@@ -229,6 +229,7 @@ function Formatter(props) {
           activeKey={activeKey}
           setInitialItems={setInitialItems}
           showNotification={showNotification}
+          editorType={pageName}
         />
       </main>
     </div>

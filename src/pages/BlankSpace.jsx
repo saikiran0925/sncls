@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import BlankSpaceTabsComponent from "../components/BlankSpaceTabsComponent";
+import TabsComponent from "../components/generic/TabsComponent";
 
 function BlankSpace() {
   const pageName = "BlankSpace";
@@ -43,11 +43,12 @@ function BlankSpace() {
   return (
     <div className="content-container">
       <main className="h-100 w-100 bg-white">
-        <BlankSpaceTabsComponent
+        <TabsComponent
           initialItems={initialItems}
           setActiveKey={setActiveKey}
           activeKey={activeKey}
           setInitialItems={setInitialItems}
+          editorType={pageName}
         />
       </main>
     </div>

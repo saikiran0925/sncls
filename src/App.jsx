@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AppLayout from "./components/AppLayout";
+import AppLayout from "./components/layout/AppLayout";
 import Formatter from "./pages/Formatter";
-import Decoder from "./pages/Decoder";
 import DiffEditorWrapper from "./pages/DiffEditor";
 import BlankSpace from "./pages/BlankSpace";
 import "./styles.css";
